@@ -1,7 +1,7 @@
 {
     "Conditions": {
-        "Compacted Header": {
-            "description": "Use a more compact header bar on Steam (everything is on 1 row)",
+        "Unified Header Bar": {
+            "description": "Use a more compact, unified header bar on Steam (single row)",
             "default": "Normal",
             "values": {
                 "Normal": {
@@ -23,7 +23,7 @@
             }
         },
         "Wallet Visibility": {
-            "description": "Show wallet balance on the top right menu",
+            "description": "Hide the current wallet balance from the user avatar menu",
             "default": "Show",
             "values": {
                 "Show": {},
@@ -34,8 +34,8 @@
                 }
             }
         },
-        "URL Visibility": {
-            "description": "Show URL bar when browsing inside Steam",
+        "URL Bar Visibility": {
+            "description": "Hide the URL bar when browsing Steam.com pages",
             "default": "Show",
             "values": {
                 "Show": {},
@@ -46,8 +46,8 @@
                 }
             }
         },
-        "What's New Visibility": {
-            "description": "Show news and updates on library from the games you own",
+        "What's New Shelf Visibility": {
+            "description": "Hide the 'Whats New' shelf from the library page",
             "default": "Show",
             "values": {
                 "Show": {},
@@ -59,7 +59,7 @@
             }
         },
         "Friends Status Outline": {
-            "description": "Enable the friends status (online and in-game) indicator in friends tab",
+            "description": "Enable the status indicators (online, ingame etc) in the friends tab",
             "default": "Hide",
             "values": {
                 "Hide": {},
@@ -71,7 +71,7 @@
             }
         },
         "Steam News Visibility": {
-            "description": "Show 'Steam News' button (megaphone) on top right",
+            "description": "Show 'Steam News' button (megaphone icon) on the top right",
             "default": "Show",
             "values": {
                 "Show": {},
@@ -81,30 +81,48 @@
                     }
                 }
             }
+        },
+        "Left Game List Visibility": {
+            "description": "Hide the text-based game list from the left side of the library page",
+            "default": "Show",
+            "values": {
+                "Show": {},
+                "Hide": {
+                    "TargetCss": {
+                        "affects": ["^Steam$"], "src": "config/LeftGameListVisibility.css"
+                    }
+                }
+            }
         }
     },
     "Configuration": [
         {
-            "Name": "Compacted Header",
-            "ToolTip": "Use a more compact header bar on Steam (everything is on 1 row)",
+            "Name": "Unified Header Bar",
+            "ToolTip": "Use a more compact, unified header bar on Steam (single row)",
             "Type": "CheckBox",
             "Value": false
         },
         {
             "Name": "Wallet Visibility",
-            "ToolTip": "Hide wallet amount from user menu",
+            "ToolTip": "Hide the current wallet balance from the user avatar menu",
             "Type": "CheckBox",
             "Value": false
         },
         {
-            "Name": "URL Visibility",
-            "ToolTip": "Hide URL bar when browsing inside steam",
+            "Name": "URL Bar Visibility",
+            "ToolTip": "Hide the URL bar when browsing Steam.com pages",
             "Type": "CheckBox",
             "Value": false
         },
         {
-            "Name": "What's New Visibility",
-            "ToolTip": "Hide 'Whats New' on library page",
+            "Name": "What's New Shelf Visibility",
+            "ToolTip": "Hide the 'Whats New' shelf from the library page",
+            "Type": "CheckBox",
+            "Value": false
+        },
+        {
+            "Name": "Left Game List Visibility",
+            "ToolTip": "Hide the text-based game list from the left side of the library page",
             "Type": "CheckBox",
             "Value": false
         }
@@ -383,7 +401,7 @@
                         "TargetCss": "headers/NormalHeader.css",
                         "TargetJs": "headers/NormalHeader.js"
                     },
-                    "If": "Compacted Header",
+                    "If": "Unified Header Bar",
                     "True": {
                         "TargetCss": "headers/CompactHeader.css",
                         "TargetJs": "headers/CompactHeader.js"
@@ -400,7 +418,7 @@
                 {
                     "Equals": true,
                     "False": {},
-                    "If": "URL Visibility",
+                    "If": "URL Bar Visibility",
                     "True": {
                         "TargetCss": "config/URLBarVisibility.css"
                     }
@@ -408,9 +426,17 @@
                 {
                     "Equals": true,
                     "False": {},
-                    "If": "What's New Visibility",
+                    "If": "What's New Shelf Visibility",
                     "True": {
                         "TargetCss": "config/WhatsNewVisibility.css"
+                    }
+                },
+                {
+                    "Equals": true,
+                    "False": {},
+                    "If": "Left Game List Visibility",
+                    "True": {
+                        "TargetCss": "config/LeftGameListVisibility.css"
                     }
                 }
             ],
